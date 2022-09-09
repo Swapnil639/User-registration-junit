@@ -17,7 +17,7 @@ public class UserRegistration {
     }
 
     public boolean validateMobileNumber(String mobileNumber) {
-        return Pattern.matches("[+]91 [6-9]\\d{9}", mobileNumber);
+        return Pattern.matches("[+]91 [0-9]{10}", mobileNumber);
     }
 
     public boolean validatePassword(String password) {
