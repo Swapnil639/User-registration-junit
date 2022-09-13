@@ -5,25 +5,42 @@ import java.util.regex.Pattern;
 public class UserRegistration {
 
     public boolean validateFirstName(String firstName) {
-        return Pattern.matches("[A-Z][a-z]{3,}", firstName);
+        if (Pattern.matches("[A-Z][a-z]{2,}", firstName)) {
+            return true;
+        } else {
+            throw new UserRegistrationException("Invalid first name");
+        }
     }
 
     public boolean validateLastName(String lastName) {
-        return Pattern.matches("[A-Z][a-z]{3,}", lastName);
+        if (Pattern.matches("[A-Z][a-z]{2,}", lastName)) {
+            return true;
+        } else {
+            throw new UserRegistrationException("Invalid last name");
+        }
     }
 
     public boolean validateEmailId(String emailId) {
-        return Pattern.matches("[a-z][A-Z a-z 0-9]+[@][a-z]+[.][a-z]{2,}", emailId);
+        if (Pattern.matches("[a-z][A-Z a-z 0-9]+[@][a-z]+[.][a-z]{2,}", emailId)) {
+            return true;
+        } else {
+            throw new UserRegistrationException("Invalid Email");
+        }
     }
 
     public boolean validateMobileNumber(String mobileNumber) {
-        return Pattern.matches("[+]91 [0-9]{10}", mobileNumber);
+        if (Pattern.matches("[+]91 [6-9]\\d{9}", mobileNumber)) {
+            return true;
+        } else {
+            throw new UserRegistrationException("Invalid mobile number");
+        }
     }
 
     public boolean validatePassword(String password) {
-        return Pattern.matches("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}", password);
-    }
-    public boolean validateMultipleEmailId(String multipleEmailId) {
-        return Pattern.matches("[a-z \\d -.]+[@][a-z \\d]+[.][a-z]{3,}", multipleEmailId);
+        if (Pattern.matches("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}", password)) {
+            return true;
+        } else {
+            throw new UserRegistrationException("Invalid Password");
+        }
     }
 }
